@@ -18,6 +18,9 @@
     "url": "https://github.com/bhuh12/vue-router-tab/issues"
   },
   "main": "dist/lib/vue-router-tab.umd.min.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "demo:dev": "vue-cli-service serve --open demo/main.js",
     "demo:build": "vue-cli-service build demo/main.js",
