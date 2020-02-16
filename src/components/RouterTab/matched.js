@@ -16,7 +16,7 @@ export default {
       warn(pageRouteIdx > -1, '未能匹配到路由信息')
 
       return {
-        baseRoute: matched[pageRouteIdx - 1], // 跟路由
+        baseRoute: matched[pageRouteIdx - 1 < 0 ? 0 : pageRouteIdx - 1], // 跟路由
         pageRoute: matched[pageRouteIdx], // 页面路由
         pageRouteIdx,
         isNest: pageRouteIdx !== matched.length - 1 // 是否嵌套路由

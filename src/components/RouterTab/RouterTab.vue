@@ -23,7 +23,10 @@
           >
             <slot v-bind="{ tab: items[index], tabs: items, index }">
               <i v-if="icon" class="tab-icon" :class="icon" />
-              <span class="tab-title">{{ i18nText(title) || lang.tab.untitled }}</span>
+              <span
+                class="tab-title"
+                :class="{textselect: activeTabId === id}"
+              >{{ i18nText(title) || lang.tab.untitled }}</span>
               <i
                 v-if="closable !== false && !(keepLastTab && items.length < 2)"
                 class="tab-close"
@@ -60,11 +63,7 @@
       </router-alive>
 
       <!-- iframe 页面 -->
-      <transition-group
-        v-bind="getTransOpt(pageTransition)"
-        tag="div"
-        class="router-tab-iframes"
-      >
+      <transition-group v-bind="getTransOpt(pageTransition)" tag="div" class="router-tab-iframes">
         <iframe
           v-for="url in iframes"
           v-show="url === currentIframe"
@@ -89,49 +88,37 @@
           class="contextmenu-item"
           :disabled="!isContextTabActived"
           @click="isContextTabActived && refreshTab(contextmenu.id)"
-        >
-          {{ lang.contextmenu.refresh }}
-        </a>
+        >{{ lang.contextmenu.refresh }}</a>
 
         <a
           class="contextmenu-item"
           :disabled="items.length < 2"
           @click="items.length > 1 && refreshAll()"
-        >
-          {{ lang.contextmenu.refreshAll }}
-        </a>
+        >{{ lang.contextmenu.refreshAll }}</a>
 
         <a
           class="contextmenu-item"
           :disabled="!isContextTabCanBeClosed"
           @click="isContextTabCanBeClosed && closeTab(contextmenu.id)"
-        >
-          {{ lang.contextmenu.close }}
-        </a>
+        >{{ lang.contextmenu.close }}</a>
 
         <a
           class="contextmenu-item"
           :disabled="!tabsLeft.length"
           @click="tabsLeft.length && closeMulti(tabsLeft)"
-        >
-          {{ lang.contextmenu.closeLefts }}
-        </a>
+        >{{ lang.contextmenu.closeLefts }}</a>
 
         <a
           class="contextmenu-item"
           :disabled="!tabsRight.length"
           @click="tabsRight.length && closeMulti(tabsRight)"
-        >
-          {{ lang.contextmenu.closeRights }}
-        </a>
+        >{{ lang.contextmenu.closeRights }}</a>
 
         <a
           class="contextmenu-item"
           :disabled="!tabsOther.length"
           @click="tabsOther.length && closeMulti(tabsOther)"
-        >
-          {{ lang.contextmenu.closeOthers }}
-        </a>
+        >{{ lang.contextmenu.closeOthers }}</a>
       </div>
     </transition>
   </div>
