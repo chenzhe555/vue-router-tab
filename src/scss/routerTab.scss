@@ -195,6 +195,7 @@ $color-primary: #409eff;
   &-container {
     position: relative;
     flex: 1;
+    display: flex;
     overflow-x: hidden;
     overflow-y: auto;
     background: #fff;
